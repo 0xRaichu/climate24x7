@@ -1,0 +1,16 @@
+Great stack - 
+src > components > Assets > images
+src > components > WeatherApp > WeatherApp.jsx --> js written also in this file
+src > components > WeatherApp > WeatherApp.css --> whole css written in this file
+
+1.)WeatherApp.jsx mounted to App.js
+2.)All images imported to WeatherApp.jsx
+3.)Inside WeatherApp.css 
+    1.)container is blue(.container)
+    2.)Search bar and search icon inside div
+    3.)Search looks like google search bar with value Search
+simple app data changes and image also changes(humidity, temp, wind speed, etc. are the features)
+
+Thapa technical - 
+src > components > CSS
+src > components > Tempapp.js
