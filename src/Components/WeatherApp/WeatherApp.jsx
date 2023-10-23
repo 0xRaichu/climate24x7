@@ -8,9 +8,11 @@ import rain_icon from "../Assets/rain.png";
 import snow_icon from "../Assets/snow.png";
 import wind_icon from "../Assets/wind.png";
 import humidity_icon from "../Assets/humidity.png";
+import { useState } from "react";
 
 const WeatherApp = () => {
 
+  const [wicon, setWicon] = useState(cloud_icon);
   // const apiKey = "919b5fe1d64c21cb5caa5d506558321b";
   const apiKey = process.env.REACT_APP_WEATHER_API;
   console.log(apiKey);
@@ -28,10 +30,32 @@ const WeatherApp = () => {
     const temperature = document.getElementsByClassName('weather-temp');
     const location = document.getElementsByClassName('weather-location');
 
-    humidity[0].innerHTML = data.main.humidity;
-    wind[0].innerHTML = data.wind.speed;
-    temperature[0].innerHTML = data.main.temp;
+    humidity[0].innerHTML = data.main.humidity + "%";
+    wind[0].innerHTML = data.wind.speed + "km/h";
+    temperature[0].innerHTML = data.main.temp + "°C";
     location[0].innerHTML = data.name;
+
+    if (data.weather[0].icon === "01d" || data.weather[0].icon === "01n") {
+      setWicon(clear_icon);
+    }
+    else if (data.weather[0].icon === "02d" || data.weather[0].icon === "02n") {
+      setWicon(cloud_icon);
+    }
+    else if (data.weather[0].icon === "03d" || data.weather[0].icon === "03n") {
+      setWicon(drizzle_icon);
+    }
+    else if (data.weather[0].icon === "09d" || data.weather[0].icon === "09n") {
+      setWicon(rain_icon);
+    }
+    else if (data.weather[0].icon === "10d" || data.weather[0].icon === "10n") {
+      setWicon(rain_icon);
+    }
+    else if (data.weather[0].icon === "13d" || data.weather[0].icon === "13n") {
+      setWicon(snow_icon);
+    }
+    else{
+      setWicon(clear_icon)
+    }
   }
   return (
     <div className="container">
@@ -42,7 +66,7 @@ const WeatherApp = () => {
         </div>
       </div>
       <div className="weather-image">
-        <img src={cloud_icon} alt="cloud_icon" />
+        <img src={wicon} alt="cloud_icon" />
       </div>
       <div className="weather-temp">24°C</div>
       <div className="weather-location">London</div>
